@@ -26,4 +26,5 @@ blocks:
         - name: Gulp
           commands:
             - npm install -g gulp
+            - npm link gulp
             - gulp
