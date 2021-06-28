@@ -1,0 +1,29 @@
+version: v1.0
+name: First pipeline
+agent:
+  machine:
+    type: e1-standard-2
+    os_image: ubuntu1804
+blocks:
+  - name: Install
+    task:
+      prologue:
+        commands:
+          - checkout
+      jobs:
+        - name: Install
+          commands:
+            - cache store
+            - npm install
+            - cache store
+  - name: Gulp
+    task:
+      prologue:
+        commands:
+          - checkout
+          - sem-version node 12
+      jobs:
+        - name: Gulp
+          commands:
+            - npm install -g gulp
+            - gulp
